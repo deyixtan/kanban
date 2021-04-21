@@ -1,6 +1,7 @@
 const DATA_TRANSFER_TYPE = "text/plain";
 
 const ATTRIBUTE_ID = "id";
+const ATTRIBUTE_CLASS = "class";
 const ATTRIBUTE_DRAGGABLE = "draggable";
 
 const KB_TABLE_CLASS_TYPE = "kb-table";
@@ -46,7 +47,10 @@ function onDrop(event) {
     const cardId = event.dataTransfer.getData(DATA_TRANSFER_TYPE);
     const cardElement = document.getElementById(cardId);
 
-    const tableElement = event.target;
+    let tableElement = event.target;
+    if (tableElement.getAttribute(ATTRIBUTE_CLASS) == KB_CARD_CLASS_TYPE) {
+        tableElement = tableElement.parentNode;
+    }
     tableElement.appendChild(cardElement);
 
     event.dataTransfer.clearData();
