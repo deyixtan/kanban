@@ -5,6 +5,7 @@ const ATTRIBUTE_CLASS = "class";
 const ATTRIBUTE_DRAGGABLE = "draggable";
 
 const KB_TABLE_CLASS_TYPE = "kb-table";
+const KB_TABLE_CONTENT_CLASS_TYPE = "kb-table-content";
 const KB_CARD_CLASS_TYPE = "kb-card";
 
 const EVENT_DRAG_START = "dragstart";
@@ -22,7 +23,7 @@ function initBoard() {
 
 function initTable(table, index) {
     const tableId = parseInt(index) + 1;
-    table.setAttribute(ATTRIBUTE_ID, KB_TABLE_CLASS_TYPE + tableId)
+    table.setAttribute(ATTRIBUTE_ID, KB_TABLE_CLASS_TYPE + tableId);
     table.addEventListener(EVENT_DRAG_OVER, onDragOver);
     table.addEventListener(EVENT_DROP, onDrop);
 }
@@ -47,11 +48,13 @@ function onDrop(event) {
     const cardId = event.dataTransfer.getData(DATA_TRANSFER_TYPE);
     const cardElement = document.getElementById(cardId);
 
-    let tableElement = event.target;
-    if (tableElement.getAttribute(ATTRIBUTE_CLASS) == KB_CARD_CLASS_TYPE) {
-        tableElement = tableElement.parentNode;
+    let targetElement = event.target;
+    while (!targetElement.classList.contains(KB_TABLE_CLASS_TYPE)) {
+        targetElement = targetElement.parentNode;
     }
-    tableElement.appendChild(cardElement);
+
+    const tableContentElement = targetElement.getElementsByClassName(KB_TABLE_CONTENT_CLASS_TYPE)[0];
+    tableContentElement.appendChild(cardElement);
 
     event.dataTransfer.clearData();
 }

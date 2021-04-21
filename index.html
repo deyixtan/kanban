@@ -2,10 +2,26 @@
 <html>
     <head>
         <title>Kanban</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
         <link rel="stylesheet" href="style.css" />
     </head>
-    <body>
-        <div class="board">
+    <body onload="initBoard()">  
+        <div class="kb-board">
+            <div class="kb-table">
+                <span class="kb-table-title">Tasks</span>
+                <div class="kb-table-content">
+                </div>
+            </div>
+            <div class="kb-table">
+                <span class="kb-table-title">In-Progress</span>
+                <div class="kb-table-content">
+                </div>
+            </div>
+            <div class="kb-table">
+                <span class="kb-table-title">Completed</span>
+                <div class="kb-table-content">
+                </div>
+            </div>
         </div>
         <script src="script.js"></script>
     </body>

@@ -1,0 +1,44 @@
+body {
+    font-family: 'Nunito';
+    font-size: 1rem;
+    color: #40393e;
+    background-color: #7c98ab;
+}
+
+.kb-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.kb-table {
+    display: block;
+    margin: 1.5rem;
+    padding: 1.5rem;
+    border: 2px solid #40393e;
+    border-radius: 1.3rem;
+    background-color: #ae8a8c;
+}
+
+.kb-table-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.kb-table-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 25vmin;
+}
+
+.kb-card {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #40393e;
+    border-radius: 0.5rem;
+    background-color: #a9c8c0;
+    text-align: center;
+}
