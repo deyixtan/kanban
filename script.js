@@ -4,10 +4,12 @@ const ELEMENT_TAG_SPAN = "span";
 const ATTRIBUTE_ID = "id";
 const ATTRIBUTE_CLASS = "class";
 const ATTRIBUTE_DRAGGABLE = "draggable";
+const CLASS_TYPE_DRAGGING = "dragging";
 const CLASS_TYPE_KB_TABLE = "kb-table";
 const CLASS_TYPE_KB_TABLE_CONTENT = CLASS_TYPE_KB_TABLE + "-content";
 const CLASS_TYPE_KB_CARD = "kb-card";
 const EVENT_DRAG_START = "dragstart";
+const EVENT_DRAG_END = "dragend";
 const EVENT_DRAG_OVER = "dragover";
 const EVENT_DROP = "drop";
 
@@ -50,16 +52,32 @@ function initCard(card, index) {
     card.setAttribute(ATTRIBUTE_ID, CLASS_TYPE_KB_CARD + cardId)
     card.setAttribute(ATTRIBUTE_DRAGGABLE, true);
     card.addEventListener(EVENT_DRAG_START, onDragStart);
+    card.addEventListener(EVENT_DRAG_END, onDragEnd);
     TOTAL_CARD_COUNT += 1;
 }
 
 // Events
 function onDragStart(event) {
     event.dataTransfer.setData(DATA_TRANSFER_TYPE, event.target.id);
+
+    event.currentTarget.classList.add(CLASS_TYPE_DRAGGING);
+}
+
+function onDragEnd(event) {
+    event.currentTarget.classList.remove(CLASS_TYPE_DRAGGING);
 }
 
 function onDragOver(event) {
     event.preventDefault();
+    
+    let targetElement = event.target;
+    while (!targetElement.classList.contains(CLASS_TYPE_KB_TABLE)) {
+        targetElement = targetElement.parentNode;
+    }
+
+    const tableContentElement = targetElement.getElementsByClassName(CLASS_TYPE_KB_TABLE_CONTENT)[0];
+    const draggedCard = document.getElementsByClassName(CLASS_TYPE_DRAGGING)[0];
+    tableContentElement.appendChild(draggedCard);
 }
 
 function onDrop(event) {

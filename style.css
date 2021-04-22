@@ -56,3 +56,7 @@ body {
     background-color: #a9c8c0;
     text-align: center;
 }
+
+.kb-card.dragging {
+    opacity: 0.5;
+}
