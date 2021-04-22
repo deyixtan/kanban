@@ -1,62 +1,59 @@
+// Global variables
 const DATA_TRANSFER_TYPE = "text/plain";
-
-const SPAN_ELEMENT_TAG = "span";
-
+const ELEMENT_TAG_SPAN = "span";
 const ATTRIBUTE_ID = "id";
 const ATTRIBUTE_CLASS = "class";
 const ATTRIBUTE_DRAGGABLE = "draggable";
-
-const KB_TABLE_CLASS_TYPE = "kb-table";
-const KB_TABLE_CONTENT_CLASS_TYPE = KB_TABLE_CLASS_TYPE + "-content";
-const KB_CARD_CLASS_TYPE = "kb-card";
-
-const KB_TASKS_TABLE = KB_TABLE_CLASS_TYPE + 1;
-
+const CLASS_TYPE_KB_TABLE = "kb-table";
+const CLASS_TYPE_KB_TABLE_CONTENT = CLASS_TYPE_KB_TABLE + "-content";
+const CLASS_TYPE_KB_CARD = "kb-card";
 const EVENT_DRAG_START = "dragstart";
 const EVENT_DRAG_OVER = "dragover";
 const EVENT_DROP = "drop";
 
+const KB_TABLE_TASKS = CLASS_TYPE_KB_TABLE + 1;
+const CREATE_CARD_TEXT_PROMPT = "Please enter a task name";
+
 let TOTAL_CARD_COUNT = 0;
 
-// Init
+// Functions
 function createTables() {
-    const tableElements = document.getElementsByClassName(KB_TABLE_CLASS_TYPE);
+    const tableElements = document.getElementsByClassName(CLASS_TYPE_KB_TABLE);
     Array.from(tableElements).forEach(initTable);
 }
 
 function createCard() {
-    const taskName = prompt("Please enter a task name");
-    if (taskName == null || taskName == "") {
-        alert("User cancelled the prompt.");
+    const taskName = prompt(CREATE_CARD_TEXT_PROMPT);
+    if (taskName == null || taskName.trim() == "") {
         return;
     }
 
-    const cardElement = document.createElement(SPAN_ELEMENT_TAG);
-    cardElement.classList.add(KB_CARD_CLASS_TYPE)
+    const cardElement = document.createElement(ELEMENT_TAG_SPAN);
+    cardElement.classList.add(CLASS_TYPE_KB_CARD)
     cardElement.textContent = taskName;
     initCard(cardElement, TOTAL_CARD_COUNT)    
 
-    const tableElement = document.getElementById(KB_TASKS_TABLE);
-    const tableContentElement = tableElement.getElementsByClassName(KB_TABLE_CONTENT_CLASS_TYPE)[0];
+    const tableElement = document.getElementById(KB_TABLE_TASKS);
+    const tableContentElement = tableElement.getElementsByClassName(CLASS_TYPE_KB_TABLE_CONTENT)[0];
     tableContentElement.appendChild(cardElement);
 }
 
 function initTable(table, index) {
     const tableId = parseInt(index) + 1;
-    table.setAttribute(ATTRIBUTE_ID, KB_TABLE_CLASS_TYPE + tableId);
+    table.setAttribute(ATTRIBUTE_ID, CLASS_TYPE_KB_TABLE + tableId);
     table.addEventListener(EVENT_DRAG_OVER, onDragOver);
     table.addEventListener(EVENT_DROP, onDrop);
 }
 
 function initCard(card, index) {
     const cardId = parseInt(index) + 1;
-    card.setAttribute(ATTRIBUTE_ID, KB_CARD_CLASS_TYPE + cardId)
+    card.setAttribute(ATTRIBUTE_ID, CLASS_TYPE_KB_CARD + cardId)
     card.setAttribute(ATTRIBUTE_DRAGGABLE, true);
     card.addEventListener(EVENT_DRAG_START, onDragStart);
     TOTAL_CARD_COUNT += 1;
 }
 
-// Card Events
+// Events
 function onDragStart(event) {
     event.dataTransfer.setData(DATA_TRANSFER_TYPE, event.target.id);
 }
@@ -70,11 +67,11 @@ function onDrop(event) {
     const cardElement = document.getElementById(cardId);
 
     let targetElement = event.target;
-    while (!targetElement.classList.contains(KB_TABLE_CLASS_TYPE)) {
+    while (!targetElement.classList.contains(CLASS_TYPE_KB_TABLE)) {
         targetElement = targetElement.parentNode;
     }
 
-    const tableContentElement = targetElement.getElementsByClassName(KB_TABLE_CONTENT_CLASS_TYPE)[0];
+    const tableContentElement = targetElement.getElementsByClassName(CLASS_TYPE_KB_TABLE_CONTENT)[0];
     tableContentElement.appendChild(cardElement);
 
     event.dataTransfer.clearData();
