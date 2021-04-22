@@ -1,10 +1,12 @@
 // Global variables
 const DATA_TRANSFER_TYPE = "text/plain";
+const ELEMENT_TAG_BTN = "button";
 const ELEMENT_TAG_SPAN = "span";
 const ATTRIBUTE_ID = "id";
 const ATTRIBUTE_CLASS = "class";
 const ATTRIBUTE_DRAGGABLE = "draggable";
 const CLASS_TYPE_DRAGGING = "dragging";
+const CLASS_TYPE_BTN_DELETE_KB_CARD = "btn-delete-card";
 const CLASS_TYPE_KB_TABLE = "kb-table";
 const CLASS_TYPE_KB_TABLE_CONTENT = CLASS_TYPE_KB_TABLE + "-content";
 const CLASS_TYPE_KB_CARD = "kb-card";
@@ -30,10 +32,18 @@ function createCard() {
         return;
     }
 
+    const deleteBtnElement = document.createElement(ELEMENT_TAG_BTN);
+    deleteBtnElement.classList.add(CLASS_TYPE_BTN_DELETE_KB_CARD);
+    deleteBtnElement.innerHTML = "<img src='delete-bin.png' />"; //
+    deleteBtnElement.addEventListener("click", (event) => {
+        event.currentTarget.parentNode.remove();
+    })
+
     const cardElement = document.createElement(ELEMENT_TAG_SPAN);
     cardElement.classList.add(CLASS_TYPE_KB_CARD)
     cardElement.textContent = taskName;
-    initCard(cardElement, TOTAL_CARD_COUNT)    
+    cardElement.appendChild(deleteBtnElement);
+    initCard(cardElement, TOTAL_CARD_COUNT);    
 
     const tableElement = document.getElementById(KB_TABLE_TASKS);
     const tableContentElement = tableElement.getElementsByClassName(CLASS_TYPE_KB_TABLE_CONTENT)[0];

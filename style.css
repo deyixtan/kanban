@@ -58,6 +58,23 @@ body {
     text-align: center;
 }
 
+.btn-delete-card {
+    float: right;
+    outline: none;
+    border: 0px;
+    background: transparent no-repeat;
+}
+
+.btn-delete-card:focus {
+    border: 0px;
+}
+
+.btn-delete-card img {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+
 .kb-card.dragging {
     opacity: 0.5;
 }
