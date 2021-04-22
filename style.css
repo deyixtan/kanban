@@ -8,11 +8,13 @@ body {
 .kb-board {
     display: flex;
     flex-flow: row wrap;
+    align-items: flex-start;
     justify-content: center;
 }
 
 .kb-table {
     display: block;
+    width: 200px;
     margin: 1.5rem;
     padding: 1.5rem;
     border: 2px solid #40393e;
@@ -45,7 +47,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 200px;
 }
 
 .kb-card {
