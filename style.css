@@ -31,7 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 25vmin;
+    width: 200px;
 }
 
 .kb-card {
