@@ -1,24 +1,44 @@
 const DATA_TRANSFER_TYPE = "text/plain";
 
+const SPAN_ELEMENT_TAG = "span";
+
 const ATTRIBUTE_ID = "id";
 const ATTRIBUTE_CLASS = "class";
 const ATTRIBUTE_DRAGGABLE = "draggable";
 
 const KB_TABLE_CLASS_TYPE = "kb-table";
-const KB_TABLE_CONTENT_CLASS_TYPE = "kb-table-content";
+const KB_TABLE_CONTENT_CLASS_TYPE = KB_TABLE_CLASS_TYPE + "-content";
 const KB_CARD_CLASS_TYPE = "kb-card";
+
+const KB_TASKS_TABLE = KB_TABLE_CLASS_TYPE + 1;
 
 const EVENT_DRAG_START = "dragstart";
 const EVENT_DRAG_OVER = "dragover";
 const EVENT_DROP = "drop";
 
-// Init
-function initBoard() {
-    const tableElements = document.getElementsByClassName(KB_TABLE_CLASS_TYPE);
-    const cardElements = document.getElementsByClassName(KB_CARD_CLASS_TYPE);
+let TOTAL_CARD_COUNT = 0;
 
+// Init
+function createTables() {
+    const tableElements = document.getElementsByClassName(KB_TABLE_CLASS_TYPE);
     Array.from(tableElements).forEach(initTable);
-    Array.from(cardElements).forEach(initCard);
+}
+
+function createCard() {
+    const taskName = prompt("Please enter a task name");
+    if (taskName == null || taskName == "") {
+        alert("User cancelled the prompt.");
+        return;
+    }
+
+    const cardElement = document.createElement(SPAN_ELEMENT_TAG);
+    cardElement.classList.add(KB_CARD_CLASS_TYPE)
+    cardElement.textContent = taskName;
+    initCard(cardElement, TOTAL_CARD_COUNT)    
+
+    const tableElement = document.getElementById(KB_TASKS_TABLE);
+    const tableContentElement = tableElement.getElementsByClassName(KB_TABLE_CONTENT_CLASS_TYPE)[0];
+    tableContentElement.appendChild(cardElement);
 }
 
 function initTable(table, index) {
@@ -33,6 +53,7 @@ function initCard(card, index) {
     card.setAttribute(ATTRIBUTE_ID, KB_CARD_CLASS_TYPE + cardId)
     card.setAttribute(ATTRIBUTE_DRAGGABLE, true);
     card.addEventListener(EVENT_DRAG_START, onDragStart);
+    TOTAL_CARD_COUNT += 1;
 }
 
 // Card Events

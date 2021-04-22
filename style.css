@@ -27,6 +27,19 @@ body {
     text-align: center;
 }
 
+.kb-table-add-btn {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    outline: none;
+    border: 1px solid #40393e;
+    background: transparent no-repeat;
+}
+
+.kb-table-add-btn:focus {
+    border: 1px solid #40393e;
+}
+
 .kb-table-content {
     display: flex;
     flex-direction: column;

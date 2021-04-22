@@ -5,10 +5,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
         <link rel="stylesheet" href="style.css" />
     </head>
-    <body onload="initBoard()">  
+    <body onload="createTables()">  
         <div class="kb-board">
             <div class="kb-table">
-                <span class="kb-table-title">Tasks</span>
+                <span class="kb-table-title">Tasks
+                    <button class="kb-table-add-btn" onclick="createCard()">+</button>
+                </span>
+
                 <div class="kb-table-content">
                 </div>
             </div>
