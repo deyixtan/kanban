@@ -1,6 +1,6 @@
 // Global variables
 const DATA_TRANSFER_TYPE = "text/plain";
-const ELEMENT_TAG_BTN = "button";
+const ELEMENT_TAG_IMG = "img";
 const ELEMENT_TAG_SPAN = "span";
 const ATTRIBUTE_ID = "id";
 const ATTRIBUTE_CLASS = "class";
@@ -32,9 +32,9 @@ function createCard() {
         return;
     }
 
-    const deleteBtnElement = document.createElement(ELEMENT_TAG_BTN);
+    const deleteBtnElement = document.createElement(ELEMENT_TAG_IMG);
     deleteBtnElement.classList.add(CLASS_TYPE_BTN_DELETE_KB_CARD);
-    deleteBtnElement.innerHTML = "<img src='delete-bin.png' />"; //
+    deleteBtnElement.src = "images/btn-delete-card.png";
     deleteBtnElement.addEventListener("click", (event) => {
         event.currentTarget.parentNode.remove();
     })

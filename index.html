@@ -4,21 +4,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kanban</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
-        <link rel="stylesheet" href="style.css" />
-        <script src="DragDropTouch.js"></script>
+        <link rel="stylesheet" href="styles/site.css" />
+        <script src="scripts/DragDropTouch.js"></script>
     </head>
     <body onload="createTables()">  
         <div class="kb-board">
             <div class="kb-table">
-                <span class="kb-table-title">Tasks
-                    <button class="kb-table-add-btn" onclick="createCard()">+</button>
+                <span class="kb-table-title">Backlog
+                    <img class="btn-add-card" src="images/btn-add-card.png" onclick="createCard()" />
                 </span>
-
                 <div class="kb-table-content">
                 </div>
             </div>
             <div class="kb-table">
-                <span class="kb-table-title">In-Progress</span>
+                <span class="kb-table-title">To Do</span>
+                <div class="kb-table-content">
+                </div>
+            </div>
+            <div class="kb-table">
+                <span class="kb-table-title">In Progress</span>
                 <div class="kb-table-content">
                 </div>
             </div>
@@ -29,6 +33,6 @@
             </div>
         </div>
 
-        <script src="script.js"></script>
+        <script src="scripts/site.js"></script>
     </body>
 </html>
