@@ -8,7 +8,8 @@ body {
 .kb-board {
     display: flex;
     flex-flow: row wrap;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
 }
 
 .kb-table {
@@ -22,6 +23,7 @@ body {
     border: 2px solid #40393e;
     border-radius: 1.3rem;
     background-color: #ae8a8c;
+    transition: transform 0.08s ease-out, width 0.08s ease-in;
 }
 
 .kb-table-title {
@@ -58,6 +60,7 @@ body {
     border-radius: 0.5rem;
     background-color: #a9c8c0;
     text-align: center;
+    word-wrap: break-word;
 }
 
 .btn-delete-card {
